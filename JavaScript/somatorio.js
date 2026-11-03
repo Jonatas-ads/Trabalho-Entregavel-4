@@ -1,8 +1,16 @@
-let n = 5;
-let soma = 0;
+function somatorio(n) {
 
-for (let i = 1; i <= n; i++) {
-    soma = soma + i;
+    if (!Number.isInteger(n) || n < 0) {
+        throw new TypeError("O valor deve ser um número inteiro não negativo.");
+    }
+
+    let soma = 0;
+
+    for (let i = 1; i <= n; i++) {
+        soma = soma + i;
+    }
+
+    return soma;
 }
 
-console.log("Somatório: " + soma);
+module.exports = somatorio;

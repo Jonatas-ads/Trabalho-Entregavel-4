@@ -1,15 +1,23 @@
-let n = 10;
-let a = 0;
-let b = 1;
+function fibonacci(n) {
 
-console.log(a);
-console.log(b);
+    if (!Number.isInteger(n) || n < 0) {
+        throw new TypeError("A quantidade deve ser um número inteiro não negativo.");
+    }
 
-for (let i = 2; i < n; i++) {
-    let proximo = a + b;
+    let a = 0;
+    let b = 1;
+    let sequencia = [];
 
-    console.log(proximo);
+    for (let i = 0; i < n; i++) {
+        sequencia.push(a);
 
-    a = b;
-    b = proximo;
+        let proximo = a + b;
+
+        a = b;
+        b = proximo;
+    }
+
+    return sequencia;
 }
+
+module.exports = fibonacci;

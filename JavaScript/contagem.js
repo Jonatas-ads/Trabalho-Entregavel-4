@@ -1,13 +1,27 @@
-let n = 5;
-let numeros = [1, 3, 7, 2, 9];
+function contagem(n, numeros) {
 
-let contador = 0;
-
-for (let numero of numeros) {
-
-    if (numero >= 1 && numero <= n) {
-        contador++;
+    if (!Number.isInteger(n) || n < 0) {
+        throw new TypeError("O limite deve ser um número inteiro não negativo.");
     }
+
+    if (!Array.isArray(numeros)) {
+        throw new TypeError("O segundo valor deve ser um array.");
+    }
+
+    if (!numeros.every(numero => Number.isFinite(numero))) {
+        throw new TypeError("O array deve conter apenas números válidos.");
+    }
+
+    let contador = 0;
+
+    for (let numero of numeros) {
+
+        if (numero >= 1 && numero <= n) {
+            contador++;
+        }
+    }
+
+    return contador;
 }
 
-console.log("Quantidade: " + contador);
+module.exports = contagem;

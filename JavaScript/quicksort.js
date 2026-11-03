@@ -1,12 +1,31 @@
 function quicksort(array, inicio, fim) {
 
-    if (inicio < fim) {
-
-        let pivo = particionar(array, inicio, fim);
-
-        quicksort(array, inicio, pivo - 1);
-        quicksort(array, pivo + 1, fim);
+    if (!Array.isArray(array)) {
+        throw new TypeError("O valor deve ser um array.");
     }
+
+    if (!array.every(numero => Number.isFinite(numero))) {
+        throw new TypeError("O array deve conter apenas números válidos.");
+    }
+
+    if (!Number.isInteger(inicio) || !Number.isInteger(fim)) {
+        throw new TypeError("Os índices devem ser números inteiros.");
+    }
+
+    if (inicio < 0 || fim >= array.length) {
+        throw new RangeError("Os índices estão fora dos limites do array.");
+    }
+
+    if (inicio >= fim) {
+        return array;
+    }
+
+    let pivo = particionar(array, inicio, fim);
+
+    quicksort(array, inicio, pivo - 1);
+    quicksort(array, pivo + 1, fim);
+
+    return array;
 }
 
 function particionar(array, inicio, fim) {
@@ -33,9 +52,4 @@ function particionar(array, inicio, fim) {
     return i + 1;
 }
 
-let numeros = [8, 3, 5, 1, 9, 2];
-
-quicksort(numeros, 0, numeros.length - 1);
-
-console.log("Array ordenado:");
-console.log(numeros);
+module.exports = quicksort;
